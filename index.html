@@ -177,14 +177,14 @@
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="number" class="form-control val_number" step="0.5" placeholder="Berat Badan" name="bb" />
+															<input type="number" class="form-control val_number" step="0.1" placeholder="Berat Badan" name="bb" />
 															<i class="ace-icon fa fa-book"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="number" class="form-control val_number" step="0.01" placeholder="Tinggi Badan" name="tb" />
+															<input type="number" class="form-control val_number" step="0.1" placeholder="Tinggi Badan" name="tb" />
 															<i class="ace-icon fa fa-bolt"></i>
 														</span>
 													</label> 
@@ -384,8 +384,8 @@
 							jenis_kelamin: form.jenis_kelamin.value,
 							nama: form.nama.value,
 							usia: null,
-							bb: form.bb.value,
-							tb: form.tb.value
+							bb: form.bb.value.replace(".", ","),
+							tb: form.tb.value.replace(".", ",")
 						});
 						fetch(`https://script.google.com/macros/s/AKfycbx5Cv1nUWBendUUuOvUC7UFpYP1XFVidJkQE6LPGibYDGcrSHGE0Aa2I7TiCNk-uflR/exec?${params}`)
 						.then(response => response.json())
