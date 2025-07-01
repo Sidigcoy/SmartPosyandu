@@ -218,12 +218,12 @@
 
 													<div class="space-24"></div>
 
-													<div class="clearfix">
+													<!-- <div class="clearfix">
 														<button type="reset" class="width-30 pull-left btn btn-sm">
 															<i class="ace-icon fa fa-refresh"></i>
 															<span class="bigger-110">Reset</span>
 														</button>
-													</div>
+													</div> -->
 												</fieldset>
 											</form>
 										</div>
@@ -316,34 +316,57 @@
 		form.addEventListener('submit', async function(e) {
 			e.preventDefault();
 
-			const data = {
-				tanggal_lahir: form.tanggal_lahir.value,
-				jenis_kelamin: form.jenis_kelamin.value,
-				nama: form.nama.value,
-				usia: null,
-				bb: form.bb.value,
-				tb: form.tb.value
-			};
-
-			const response = await fetch('https://script.google.com/macros/s/AKfycbwe6F1AAApeAOdYTsLyEsAIKiZNT7VSjapMfY5GchKNQnIl4LO1fDx0aGHpusPk2qOB/exec', {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*',
-			}
+			const params = new URLSearchParams({
+			tanggal_lahir: form.tanggal_lahir.value,
+			jenis_kelamin: form.jenis_kelamin.value,
+			nama: form.nama.value,
+			usia: null,
+			bb: form.bb.value,
+			tb: form.tb.value
 			});
-			console.log(response);
-			// Parsing response JSON
-			const result = await response.json();
 
-			// Misalnya kamu mau isi input/form field HTML:
-			document.getElementById("status_bbu").value = result.status_bbu;
-			document.getElementById("status_tbu").value = result.status_tbu;
-			document.getElementById("status_bb_tb").value = result.status_bb_tb;
+			fetch(`https://script.google.com/macros/s/AKfycbx5Cv1nUWBendUUuOvUC7UFpYP1XFVidJkQE6LPGibYDGcrSHGE0Aa2I7TiCNk-uflR/exec?${params}`)
+			.then(response => response.json())
+			.then(data => {
+				console.log("Status BBU:", data.status_bbu);
+				console.log("Status TBU:", data.status_tbu);
+				console.log("Status BB/TB:", data.status_bb_tb);
+				document.getElementById("status_bbu").value = data.status_bbu;
+				document.getElementById("status_tbu").value = data.status_tbu;
+				document.getElementById("status_bb_tb").value = data.status_bb_tb;
+			})
+			.catch(error => console.error("Fetch error:", error));
+
+
+			// const data = {
+			// 	tanggal_lahir: form.tanggal_lahir.value,
+			// 	jenis_kelamin: form.jenis_kelamin.value,
+			// 	nama: form.nama.value,
+			// 	usia: null,
+			// 	bb: form.bb.value,
+			// 	tb: form.tb.value
+			// };
+
+			// const response = await fetch('https://script.google.com/macros/s/AKfycbwe6F1AAApeAOdYTsLyEsAIKiZNT7VSjapMfY5GchKNQnIl4LO1fDx0aGHpusPk2qOB/exec', {
+			// method: 'POST',
+			// body: JSON.stringify(data),
+			// headers: {
+			// 	'Content-Type': 'application/json',
+			// 	'Access-Control-Allow-Origin': '*',
+			// },
+			// mode: 'no-cors'
+			// });
+			// console.log(response);
+			// Parsing response JSON
+			// const result = await response.json();
+
+			// // Misalnya kamu mau isi input/form field HTML:
+			// document.getElementById("status_bbu").value = result.status_bbu;
+			// document.getElementById("status_tbu").value = result.status_tbu;
+			// document.getElementById("status_bb_tb").value = result.status_bb_tb;
 
 			// const result = await response.text();
-			alert("Status: " + result.status_bbu + ", " + result.status_tbu + ", " + result.status_bb_tb);
+			// alert("Status: " + result.status_bbu + ", " + result.status_tbu + ", " + result.status_bb_tb);
 		});
 		</script>
 	</body>
