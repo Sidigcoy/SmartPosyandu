@@ -116,7 +116,7 @@
 
 											<div class="space-6"></div>
 
-											<form id="myForm" method="post" action="https://script.google.com/macros/s/AKfycbxlMygln2ZvCraAe1Kvs9lfsZjhvFInTFaGXBRl0H76N0sSirJxnOjlqIs45ZiHQJnX/exec">
+											<form id="myForm" >
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -387,7 +387,7 @@
 							bb: form.bb.value.replace(".", ","),
 							tb: form.tb.value.replace(".", ",")
 						});
-						fetch(`https://script.google.com/macros/s/AKfycbx5Cv1nUWBendUUuOvUC7UFpYP1XFVidJkQE6LPGibYDGcrSHGE0Aa2I7TiCNk-uflR/exec?${params}`)
+						fetch(`https://script.google.com/macros/s/AKfycbyWpLr8KrTQ1QE-qf2vtjHkbjiEiZkEZhmRXUEUoKfhIlcc0EpBlFxrscRSy1AgR0Xd/exec?${params}`)
 						.then(response => response.json())
 						.then(data => {
 							hideLoader();
