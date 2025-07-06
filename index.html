@@ -366,6 +366,47 @@
 
 		form.addEventListener('submit', async function(e) {
 			e.preventDefault();
+			  // Simple validation checks
+			if (form.tanggal_lahir.value === '') {
+				Swal.fire({
+					icon: "error",
+					title: "Aduhh...",
+					text: "Tanggal lahir belum disi!",
+				});
+				return;
+			}
+			if (form.jenis_kelamin.value === '') {
+				Swal.fire({
+					icon: "error",
+					title: "Aduhh...",
+					text: "Jenis kelamin belum disi!",
+				});
+				return;
+			}
+			if (form.nama.value === '') {
+				Swal.fire({
+					icon: "error",
+					title: "Aduhh...",
+					text: "Nama belum disi!",
+				});
+				return;
+			}
+			if (form.bb.value === '') {
+				Swal.fire({
+					icon: "error",
+					title: "Aduhh...",
+					text: "Berat badan belum disi!",
+				});
+				return;
+			}
+			if (form.tb.value === '') {
+				Swal.fire({
+					icon: "error",
+					title: "Aduhh...",
+					text: "Tinggi badan belum disi!",
+				});
+				return;
+			}
 			
 			Swal.fire({
 				title: "Apakah Anda sudah yakin?",
@@ -387,7 +428,7 @@
 							bb: form.bb.value.replace(".", ","),
 							tb: form.tb.value.replace(".", ",")
 						});
-						fetch(`https://script.google.com/macros/s/AKfycbyWpLr8KrTQ1QE-qf2vtjHkbjiEiZkEZhmRXUEUoKfhIlcc0EpBlFxrscRSy1AgR0Xd/exec?${params}`)
+						fetch(`https://script.google.com/macros/s/AKfycbyTZGLvSLte4kMiGBgFYHlFNL_93wYnIs_kS28LO9uKcFQn8ml6EuIELLdqLGCQr1LA/exec?${params}`)
 						.then(response => response.json())
 						.then(data => {
 							hideLoader();
